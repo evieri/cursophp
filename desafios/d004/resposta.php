@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Desafio PHP 3</title>
+    <title>Desafio PHP 4</title>
 </head>
 <body style="height: 100vh">
     
@@ -13,11 +13,17 @@
             <h2 class="mb-4">Resultado:</h2>
             <p class='m-3'>
                 <?php
-                    $real = $_REQUEST["num"] ?? 0;
-                    $dólar = $real / 4.91;
+                    $spassada = $hoje = date("m-d-Y", strtotime("-7 days"));
+                    $hoje = date("m-d-Y");
 
-                    //$real = number_format($real, 2, "," , ".");
-                    //$dolar = number_format($dolar, 2, "," , ".");
+                    $url = 'https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial=\''. $spassada .'\'&@dataFinalCotacao=\''. $hoje .'\'&$top=1&$orderby=dataHoraCotacao%20desc&$format=json&$select=cotacaoCompra';
+
+                    $dados = json_decode(file_get_contents($url), true);
+
+                    $cotação = $dados["value"]["0"]["cotacaoCompra"];
+
+                    $real = $_REQUEST["num"] ?? 0;
+                    $dólar = $real / $cotação;
 
                     // Biblioteca de Intenacionalização intl
                     $padrão = numfmt_create("pt_BR", NumberFormatter::CURRENCY);
