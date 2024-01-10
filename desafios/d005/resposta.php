@@ -15,7 +15,7 @@
                 <?php
                     $num = $_REQUEST["num"] ?? 0;
 
-                    $inteira = floor($num);
+                    $inteira = (int)$num;
                     $real = $num - $inteira;
 
                     $num = number_format($num, 3, "," , ".");
