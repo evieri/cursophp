@@ -10,11 +10,25 @@
     <main class="justify-content-center shadow-lg gx-0 vh-100 d-flex">
         <pre class="shadow p-5">
             <?php 
+                setcookie("dia-da-semana", "SEGUNDA", time() + 3600);
+
+                session_start();
+                $_SESSION["teste"] = "FUNCIONOU!";
+
                 echo "<h2>Superglobal GET</h2>";
                 var_dump($_GET);
 
                 echo "<h2>Superglobal POST</h2>";
-                var_dump($_POST)
+                var_dump($_POST);
+
+                echo "<h2>Superglobal REQUEST</h2>";
+                var_dump($_REQUEST);
+
+                echo "<h2>Superglobal COOKIE</h2>";
+                var_dump($_COOKIE);
+
+                echo "<h2>Superglobal COOKIE</h2>";
+                var_dump($_COOKIE);
             ?>
         </pre>
     </main>
