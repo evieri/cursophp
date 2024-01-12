@@ -27,8 +27,8 @@
                 echo "<h2>Superglobal COOKIE</h2>";
                 var_dump($_COOKIE);
 
-                echo "<h2>Superglobal COOKIE</h2>";
-                var_dump($_COOKIE);
+                echo "<h2>Superglobal SESSION</h2>";
+                var_dump($_SESSION);
             ?>
         </pre>
     </main>
